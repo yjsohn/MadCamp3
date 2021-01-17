@@ -13,12 +13,10 @@ class ShowPhysiognomy : AppCompatActivity() {
         img.setImageURI(a.toUri())
         var feature : Features = intent.getSerializableExtra("FEATURE") as Features
 
-
         //비율 계산
         feature = feature.calcFeature()
         var proportion = (feature.lipLength / feature.faceWidth) * 100
         feature_tv.setText("face_width: " + feature.faceWidth + ", lip_len: " + feature.lipLength.toString() + ", lip_upper_th: " + feature.upperLipThickness + ", lip_lower_th: " + feature.lowerLipThickness +
                 "\nproportion: " + proportion)
-
     }
 }

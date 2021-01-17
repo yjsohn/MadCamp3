@@ -174,11 +174,13 @@ class MainActivity : BaseActivity() {
                 val nextIntent = Intent(this, ShowPhysiognomy::class.java)
                 nextIntent.putExtra("src", src)
 
-
                 var faceContourGraphic  = cameraManager.getGraphicOverlay().getGraphic() as FaceContourGraphic
                 val contour : MutableList<FaceContour> = faceContourGraphic.getContour()
+                var top = faceContourGraphic.getBounding()?.top
                 Log.i("aaaaaaaa", contour.toString())
-                var feature : Features = Features()
+                if(top == null)
+                    top = 0
+                var feature : Features = Features(top)
                 for(i : Int in 0..12) {
                     var size = contour[i].points.size - 1
                     var tmp  : ArrayList<Pair<Float, Float>> = ArrayList<Pair<Float, Float>>()
