@@ -3,11 +3,71 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".physiognomy.FragmentFourth">
     <!-- TODO: Update blank fragment layout -->
+
+    <RadioGroup
+        android:id="@+id/gender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        >
+
+
+        <RadioButton
+            android:id="@+id/female"
+            android:layout_width="160sp"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:background="@drawable/radio_flat_selector"
+            android:button="@android:color/transparent"
+            android:checked="true"
+            android:paddingLeft="16sp"
+            android:paddingTop="3sp"
+            android:paddingRight="16sp"
+            android:paddingBottom="3sp"
+            android:text="Female"
+            android:textColor="@color/radio_flat_text_selector" />
+
+        <RadioButton
+            android:id="@+id/male"
+            android:gravity="center"
+            android:layout_width="160sp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/radio_flat_selector"
+            android:button="@android:color/transparent"
+            android:paddingLeft="16sp"
+            android:paddingTop="3sp"
+            android:paddingRight="16sp"
+            android:paddingBottom="3sp"
+            android:text="Male"
+            android:textColor="@color/radio_flat_text_selector" />
+
+    </RadioGroup>
+
     <TextView android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Fragment One!" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:textSize="18dp"
+        android:id="@+id/four_txt1"
+        />
+    <TextView android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:textSize="18dp"
+        android:id="@+id/four_txt2"
+        />
+
+
+
+
+
 
 </FrameLayout>

@@ -14,7 +14,7 @@ class ShowPhysiognomy : AppCompatActivity() {
     private val fragmentThree by lazy { FragmentThree() }
     private val fragmentFour by lazy { FragmentFourth() }
     private val fragmentFifth by lazy { FragmentFifth() }
-
+    lateinit var feature : Features
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,30 +23,29 @@ class ShowPhysiognomy : AppCompatActivity() {
         var a = intent.getStringExtra("src")
         var top = intent.getIntExtra("TOP", 0)
         img.setImageURI(a.toUri())
-        var feature : Features = intent.getSerializableExtra("FEATURE") as Features
+        feature = intent.getSerializableExtra("FEATURE") as Features
 
 
         //비율 계산
         feature = feature.calcFeature()
-        var proportion = (feature.lipLength / feature.faceWidth) * 100
-//        var txt1 = ("face_width: " + feature.faceWidth + ", lip_len: " + feature.lipLength.toString() + ", lip_upper_th: " + feature.upperLipThickness + ", lip_lower_th: " + feature.lowerLipThickness +
-//                "\nproportion: " + proportion)
-//        feature_tv.setText("face_width: " + feature.faceWidth + ", lip_len: " + feature.lipLength.toString() + ", lip_upper_th: " + feature.upperLipThickness + ", lip_lower_th: " + feature.lowerLipThickness +
-//                "\nproportion: " + proportion)
 
-        var txt1 = "leftEyeLength: "+ feature.leftEyeLength+
-                "btw: "+ feature.btw/feature.leftEyeLength +"rightEyeLength: "+ feature.rightEyeLength/feature.leftEyeLength
+
         var arr1 = floatArrayOf(feature.leftEyeLength, feature.btw, feature.rightEyeLength, feature.upper, feature.middle, feature.lower)
-
+        var arr4 = floatArrayOf(feature.noseLength, feature.noseWidth)
+        Log.d("arr4444444", feature.noseLength.toString()+"          "+ feature.noseWidth.toString())
         val bundle = Bundle()
-        //bundle.putString("params", txt1)
         bundle.putFloatArray("arr1", arr1)
+        val myObj1 = fragmentOne
+        myObj1.arguments = bundle
 
-        val myObj = fragmentOne
-        myObj.arguments = bundle
+        val bundle4 = Bundle()
+        bundle.putFloatArray("arr4", arr4)
+        val myObj4 = fragmentFour
+        myObj4.arguments = bundle
 
         initNavigationBar()
     }
+
     private fun initNavigationBar() {
         bnv_main.run {
             setOnNavigationItemSelectedListener {
@@ -72,7 +71,11 @@ class ShowPhysiognomy : AppCompatActivity() {
             selectedItemId = R.id.first
         }
     }
+
     private fun changeFragment(fragment: Fragment) {
+        var bundle : Bundle = Bundle()
+        bundle.putSerializable("FEATURE", feature)
+        fragment.arguments = bundle
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.fl_container, fragment)

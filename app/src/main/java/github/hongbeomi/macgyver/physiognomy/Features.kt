@@ -102,7 +102,7 @@ class Features (var top : Int) : Serializable{
             when (i + 1) {
                 FACE -> {
                     faceWidth = maxX - minX
-                    faceLength = maxY - minY
+                    faceLength = maxY - top
                 }
                 LEFT_EYE -> {
                     leftEyeLength =
