@@ -108,6 +108,8 @@ class FaceContourGraphic (
         return face.allContours
     }
 
+
+
     companion object {
         private const val FACE_POSITION_RADIUS = 4.0f
         private const val ID_TEXT_SIZE = 30.0f

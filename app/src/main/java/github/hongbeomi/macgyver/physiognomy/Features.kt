@@ -36,23 +36,38 @@ class Features () : Serializable{
     lateinit var nose_bottom : ArrayList<Pair<Float, Float>>
 
 
-    fun calcFeature(faceContour: MutableList<FaceContour>){
-        //Face
-        var sizeI = faceContour.size - 1
-        var sizeJ = faceContour[0].points.size - 1
+    var faceWidth : Float = 0F
+    var faceLength : Float = 0F
+    var leftEyeLength : Float = 0F
+    var leftEyeHeight : Float = 0F
+    var rightEyeLength : Float = 0F
+    var rightEyeHeight : Float = 0F
+    var lipLength : Float = 0F
+    var upperLipThickness : Float = 0F
+    var lowerLipThickness : Float = 0F
+    var noseLength : Float = 0F
+    var noseWidth : Float = 0F
+    var philtrum : Float = 0F
 
-        var faceWidth : Float = 0F
-        var faceLength : Float = 0F
-        var leftEyeLength : Float = 0F
-        var leftEyeHeight : Float = 0F
-        var rightEyeLength : Float = 0F
-        var rightEyeHeight : Float = 0F
-        var lipLength : Float = 0F
-        var upperLipThickness : Float = 0F
-        var lowerLipThickness : Float = 0F
-        var noseLength : Float = 0F
-        var noseWidth : Float = 0F
-        var philtrum : Float = 0F
+    val totalList : MutableList<MutableList<Pair<Float, Float>>> = ArrayList()
+
+    fun calcFeature() : Features{
+        totalList.add(face)
+        totalList.add(left_eyebrow_top)
+        totalList.add(left_eyebrow_bottom)
+        totalList.add(right_eyebrow_top)
+        totalList.add(right_eyebrow_bottom)
+        totalList.add(left_eye)
+        totalList.add(right_eye)
+        totalList.add(upper_lip_top)
+        totalList.add(upper_lip_bottom)
+        totalList.add(lower_lip_top)
+        totalList.add(lower_lip_bottom)
+        totalList.add(nose_bridge)
+        totalList.add(nose_bottom)
+
+        //Face
+        var sizeI = totalList.size - 1
 
         var minX : Float = 0F
         var minY : Float = 0F
@@ -61,47 +76,52 @@ class Features () : Serializable{
 
         for(i : Int in 0..sizeI) {
             //var max
-            if(i < UPPER_LIP_TOP - 1) {
-                for (j: Int in 0..sizeJ) {
-                    if (j == 0) {
-                        minX = faceContour[i].points[j].x
-                        minY = faceContour[i].points[j].y
-                        maxX = faceContour[i].points[j].x
-                        maxY = faceContour[i].points[j].y
-                    }
-                    if (faceContour[i].points[j].x < minX)
-                        minX = faceContour[i].points[j].x
-                    if (faceContour[i].points[j].y < minY)
-                        minY = faceContour[i].points[j].y
-                    if (faceContour[i].points[j].x > maxX)
-                        maxX = faceContour[i].points[j].x
-                    if (faceContour[i].points[j].y > maxY)
-                        maxY = faceContour[i].points[j].y
+            var sizeJ = totalList[i].size - 1
+            for (j: Int in 0..sizeJ) {
+                if (j == 0) {
+                    minX = totalList[i][j].first
+                    minY = totalList[i][j].second
+                    maxX = totalList[i][j].first
+                    maxY = totalList[i][j].second
+                }
+                else {
+                    if (totalList[i][j].first < minX)
+                        minX = totalList[i][j].first
+                    if (totalList[i][j].second < minY)
+                        minY = totalList[i][j].second
+                    if (totalList[i][j].first > maxX)
+                        maxX = totalList[i][j].first
+                    if (totalList[i][j].second > maxY)
+                        maxY = totalList[i][j].second
                 }
             }
-            when(i + 1){
+            when (i + 1) {
                 FACE -> {
                     faceWidth = maxX - minX
                     faceLength = maxY - minY
                 }
                 LEFT_EYE -> {
                     leftEyeLength =
-                        Math.abs(faceContour[LEFT_EYE - 1].points[0].x - faceContour[LEFT_EYE - 1].points[8].x)
+                        Math.abs(totalList[i][0].first - totalList[i][8].first)
                     leftEyeHeight = maxY - minY
                 }
                 RIGHT_EYE -> {
                     rightEyeLength =
-                        Math.abs(faceContour[RIGHT_EYE - 1].points[0].x - faceContour[RIGHT_EYE - 1].points[8].x)
+                        Math.abs(totalList[i][0].first - totalList[i][8].first)
                     rightEyeHeight = maxY - minY
                 }
-                UPPER_LIP_TOP -> lipLength = faceContour[UPPER_LIP_TOP - 1].points[10].x - faceContour[UPPER_LIP_TOP - 1].points[0].x
-                UPPER_LIP_BOTTOM -> upperLipThickness = faceContour[UPPER_LIP_BOTTOM - 1].points[4].y - faceContour[UPPER_LIP_TOP - 1].points[5].y
-                LOWER_LIP_BOTTOM -> lowerLipThickness = faceContour[LOWER_LIP_BOTTOM - 1].points[4].y - faceContour[LOWER_LIP_TOP - 1].points[4].y
+                //UPPER_LIP_TOP -> lipLength =
+                    //totalList[UPPER_LIP_TOP - 1][10].first - totalList[UPPER_LIP_TOP - 1][0].first
+                UPPER_LIP_BOTTOM -> {
+                    upperLipThickness = totalList[UPPER_LIP_BOTTOM - 1][4].second - totalList[UPPER_LIP_TOP - 1][5].second
+                }
+                LOWER_LIP_TOP -> lipLength = totalList[i][0].first - totalList[i][8].first
+                LOWER_LIP_BOTTOM -> lowerLipThickness = totalList[LOWER_LIP_BOTTOM - 1][4].second - totalList[LOWER_LIP_TOP - 1][4].second
                 NOSE_BRIDGE -> {
-                    var x1 = faceContour[NOSE_BRIDGE - 1].points[0].x
-                    var x2 = faceContour[NOSE_BRIDGE - 1].points[1].x
-                    var y1 = faceContour[NOSE_BRIDGE - 1].points[0].y
-                    var y2 = faceContour[NOSE_BRIDGE - 1].points[1].y
+                    var x1 = totalList[i][0].first
+                    var x2 = totalList[i][1].first
+                    var y1 = totalList[i][0].second
+                    var y2 = totalList[i][1].second
                     noseLength = Math.sqrt(
                         Math.pow(
                             (x1 - x2).toDouble(),
@@ -111,11 +131,12 @@ class Features () : Serializable{
                 }
                 NOSE_BOTTOM -> {
                     noseWidth =
-                        faceContour[NOSE_BOTTOM - 1].points[2].x - faceContour[NOSE_BOTTOM - 1].points[0].x
+                        totalList[i][2].first - totalList[i][0].first
                     philtrum =
-                        faceContour[UPPER_LIP_TOP - 1].points[5].y - faceContour[NOSE_BOTTOM - 1].points[1].y
+                        totalList[UPPER_LIP_TOP - 1][5].second - totalList[NOSE_BOTTOM - 1][1].second
                 }
             }
         }
+        return this
     }
 }

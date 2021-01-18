@@ -21,6 +21,7 @@ import com.google.android.gms.vision.face.Contour
 import com.google.mlkit.vision.face.FaceContour
 import github.hongbeomi.macgyver.R
 import github.hongbeomi.macgyver.camerax.CameraManager
+import github.hongbeomi.macgyver.camerax.GraphicOverlay
 import github.hongbeomi.macgyver.databinding.ActivityMainBinding
 import github.hongbeomi.macgyver.mlkit.vision.face_detection.FaceContourGraphic
 import github.hongbeomi.macgyver.physiognomy.Features
@@ -175,9 +176,14 @@ class MainActivity : BaseActivity() {
                 nextIntent.putExtra("src", src)
 
 
-                var faceContourGraphic  = cameraManager.getGraphicOverlay().getGraphic() as FaceContourGraphic
+                var graphicOverlay : GraphicOverlay = cameraManager.getGraphicOverlay()
+                var top = graphicOverlay.getBoundingBox()?.top
+                var faceContourGraphic  = graphicOverlay.getGraphic() as FaceContourGraphic
                 val contour : MutableList<FaceContour> = faceContourGraphic.getContour()
+
+                //Log.i("rrrrrrr", graphicOverlay.getBoundingBox()?.top.toString())
                 Log.i("aaaaaaaa", contour.toString())
+
                 var feature : Features = Features()
                 for(i : Int in 0..12) {
                     var size = contour[i].points.size - 1
@@ -202,6 +208,7 @@ class MainActivity : BaseActivity() {
                     }
                 }
                 nextIntent.putExtra("FEATURE", feature)
+                nextIntent.putExtra("TOP", top)
                 startActivity(nextIntent)
             }
     }
