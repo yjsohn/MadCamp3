@@ -3,23 +3,65 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".physiognomy.FragmentOne">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:orientation="vertical">
 
-        <TextView android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
-            android:id="@+id/one_txt1"
-             />
-        <TextView android:layout_width="match_parent"
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal">
+            <TextView android:layout_width="0dp"
+                android:layout_weight="7"
+                android:layout_height="wrap_content"
+                android:textSize="25dp"
+                android:layout_marginTop="40dp"
+                android:textAlignment="center"
+                android:background="@drawable/bg_custom_button"
+                android:id="@+id/one_txt1"
+                android:layout_marginBottom="5dp"
+                />
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="120dp"
+                android:src="@drawable/hor"
+                android:id="@+id/horizon"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
-            android:id="@+id/one_txt2"
-            />
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:layout_height="wrap_content"
+                android:textSize="25dp"
+                android:layout_marginTop="40dp"
+                android:textAlignment="center"
+                android:background="@drawable/bg_custom_button"
+                android:id="@+id/one_txt2"
+                />
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="120dp"
+                android:src="@drawable/ver"
+                android:id="@+id/vertical"/>
+        </LinearLayout>
+        <ImageView
+            android:layout_width="130dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:id="@+id/score_img"/>
     </LinearLayout>
 
 </FrameLayout>

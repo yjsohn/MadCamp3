@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import github.hongbeomi.macgyver.R
 import kotlinx.android.synthetic.main.fragment_one.*
+import kotlin.properties.Delegates
 
 class FragmentOne : Fragment() {
     lateinit var bundle : Bundle
@@ -27,13 +28,18 @@ class FragmentOne : Fragment() {
         bundle = this!!.arguments!!
         var feature : Features = bundle.getSerializable("FEATURE") as Features
         var tmp = feature.btw / feature.leftEyeLength
-
+        var score = 50
         if(tmp<1.28 && tmp >1.12)       {
-                one_txt1.setText("당신의 오른쪽 눈 : 미간 : 왼쪽 눈 비율은 황금비율인 1 : 1.2 : 1 입니다! 이번생은 재밌겠군요!")
+                one_txt1.setText("1 : 1.2 : 1 \n 완벽해요!")
+                score+=25
+//                    "왼쪽 눈 : 미간 : 오른쪽 눈 황금 비율은 \n 1 : 1.2 : 1,\n 당신의 오른쪽 눈 : 미간 : 왼쪽 눈 비율은 \n" +
+//                        "1 : 1.2 : 1 \n Perfect! 부러워요")
             }else{
-                one_txt1.setText( "이상적인 오른쪽 눈 : 미간 : 왼쪽 눈 황금 비율은 1:1.2:1이지만,xx 당신의 오른쪽 눈 : 미간 : 왼쪽 눈 비율은 "
-                        + "1 : "+ Math.round(tmp*100)/100.0 + " : " +
-                        Math.round((feature.leftEyeLength/feature.rightEyeLength)*100)/100.0+"입니다. 다음생을 기약해 보세요!")
+                one_txt1.setText("1 : "+ Math.round(tmp*100)/100.0 + " : " +
+                        Math.round((feature.leftEyeLength/feature.rightEyeLength)*100)/100.0 + "\n 흠....?")
+//                    "왼쪽 눈 : 미간 : 오른쪽 눈 황금 비율은 \n 1 : 1.2 : 1,\n 당신의 오른쪽 눈 : 미간 : 왼쪽 눈 비율은 \n"
+//                        + "1 : "+ Math.round(tmp*100)/100.0 + " : " +
+//                        Math.round((feature.leftEyeLength/feature.rightEyeLength)*100)/100.0 +" \n 아쉽네요! 다시 찍어보면 결과가 다를지도?!")
             }
 
         var tmp2 = feature.middle / feature.upper
@@ -46,12 +52,22 @@ class FragmentOne : Fragment() {
                     gold2=true
             }
             if(gold1==true && gold2 == true) {
-                one_txt2.setText("당신의 이마 : 코 : 하관 비율은 황금비율인 1 : 1 : 1 입니다!. 부럽군요~")
+                one_txt2.setText("1 : 1 : 1 \n 완벽해요!")
+                score+=25
+//                    "이마 : 코 : 하관 황금비율은 \n 1 : 1 : 1 \n 당신의 이마 : 코 : 하관 비율은 1 : 1 : 1 \n 부럽군요~")
             }else{
-                one_txt2.setText("당신의 이마 : 코 : 하관 비율은 1 : "+
-                        Math.round(tmp2*100)/100.0+ " : " + Math.round(tmp3*100)/100.0 + "으로 정~말 아깝게 황금비율을 비껴갔습니다!\n" +
-                        "이만 말을 줄이겠습니다. 행복한 하루 보내세요~")
+                one_txt2.setText("1 : "+ Math.round(tmp2*100)/100.0 + " : " + Math.round(tmp3*100)/100.0 + "\n 흠....?" )
+//                    "이마 : 코 : 하관 황금비율은 \n 1 : 1 : 1 \n 당신의 이마 : 코 : 하관 비율은 \n 1 : "+
+//                        Math.round(tmp2*100)/100.0+ " : " + Math.round(tmp3*100)/100.0 + " \n 정~말 아깝게 황금비율을 비껴갔습니다!\n" +
+//                        "이만 말을 줄이겠습니다. 행복한 하루 보내세요~")
             }
+        if(score==50){
+            score_img.setImageResource(R.drawable.fifty)
+        }else if(score==75){
+            score_img.setImageResource(R.drawable.seventyfive)
+        }else{
+            score_img.setImageResource(R.drawable.hundred)
+        }
 
     }
 }
