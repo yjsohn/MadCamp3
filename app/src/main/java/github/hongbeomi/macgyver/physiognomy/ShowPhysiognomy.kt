@@ -12,6 +12,7 @@ class ShowPhysiognomy : AppCompatActivity() {
     private val fragmentThree by lazy { FragmentThree() }
     private val fragmentFour by lazy { FragmentFourth() }
     private val fragmentFifth by lazy { FragmentFifth() }
+    lateinit var feature : Features
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,14 +20,9 @@ class ShowPhysiognomy : AppCompatActivity() {
         var a = intent.getStringExtra("src")
         var top = intent.getIntExtra("TOP", 0)
         img.setImageURI(a.toUri())
-        var feature : Features = intent.getSerializableExtra("FEATURE") as Features
-
-
-        //비율 계산
+        feature = intent.getSerializableExtra("FEATURE") as Features
         feature = feature.calcFeature()
-        var proportion = (feature.lipLength / feature.faceWidth) * 100
-        feature_tv.setText("face_width: " + feature.faceWidth + ", lip_len: " + feature.lipLength.toString() + ", lip_upper_th: " + feature.upperLipThickness + ", lip_lower_th: " + feature.lowerLipThickness +
-                "\nproportion: " + proportion)
+
         initNavigationBar()
     }
     private fun initNavigationBar() {
@@ -55,6 +51,10 @@ class ShowPhysiognomy : AppCompatActivity() {
         }
     }
     private fun changeFragment(fragment: Fragment) {
+        var bundle : Bundle = Bundle()
+        bundle.putSerializable("FEATURE", feature)
+        fragment.arguments = bundle
+
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.fl_container, fragment)

@@ -1,13 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".physiognomy.FragmentTwo">
+    tools:context=".physiognomy.FragmentFifth">
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="350dp"
-        android:text="hi" />
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/result_eye"
+            android:layout_width="370dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:text="결과"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            android:lineSpacingExtra="10dp"
+            android:fontFamily="@font/samanco"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/similarEye"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="13dp"
+            android:fontFamily="@font/samanco"
+            android:text="나와 비슷한 눈을 가진 연예인"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/result_eye" />
+
+        <TextView
+            android:id="@+id/simEye1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/hash_tag"
+            android:fontFamily="@font/samanco"
+            android:padding="5dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/similarEye" />
+
+        <TextView
+            android:id="@+id/simEye2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/hash_tag"
+            android:fontFamily="@font/samanco"
+            android:padding="5dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/simEye1"
+            app:layout_constraintTop_toBottomOf="@+id/similarEye" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

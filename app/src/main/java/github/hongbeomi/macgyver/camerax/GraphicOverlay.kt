@@ -23,15 +23,16 @@ open class GraphicOverlay(context: Context?, attrs: AttributeSet?) :
     var cameraSelector: Int = CameraSelector.LENS_FACING_BACK
     lateinit var processBitmap: Bitmap
     lateinit var processCanvas: Canvas
-    var box : Rect? = null
+    //var box : Rect? = null
 
     abstract class Graphic(private val overlay: GraphicOverlay) {
+        var box : Rect? = null
 
         abstract fun draw(canvas: Canvas?)
 
         fun calculateRect(height: Float, width: Float, boundingBoxT: Rect): RectF {
-
-            overlay.box = boundingBoxT
+            //overlay.box = boundingBoxT
+            box = boundingBoxT
 
             // for land scape
             fun isLandScapeMode(): Boolean {
@@ -100,6 +101,9 @@ open class GraphicOverlay(context: Context?, attrs: AttributeSet?) :
                 vertical
             }
         }
+        fun getBounding() : Rect?{
+            return box
+        }
 
     }
 
@@ -125,9 +129,12 @@ open class GraphicOverlay(context: Context?, attrs: AttributeSet?) :
         return graphics[size - 1]
     }
 
+    /*
     fun getBoundingBox() : Rect?{
         return this.box
     }
+
+     */
 
     fun remove(graphic: Graphic) {
         synchronized(lock) { graphics.remove(graphic) }

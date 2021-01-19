@@ -6,7 +6,7 @@ import github.hongbeomi.macgyver.camerax.GraphicOverlay
 import github.hongbeomi.macgyver.mlkit.vision.face_detection.FaceContourGraphic
 import java.io.Serializable
 
-class Features () : Serializable{
+class Features (var top : Int) : Serializable{
     val FACE = 1
     val LEFT_EYEBROW_TOP = 2
     val LEFT_EYEBROW_BOTTOM = 3
@@ -45,9 +45,15 @@ class Features () : Serializable{
     var lipLength : Float = 0F
     var upperLipThickness : Float = 0F
     var lowerLipThickness : Float = 0F
+    var lipThickness : Float = 0F
     var noseLength : Float = 0F
     var noseWidth : Float = 0F
     var philtrum : Float = 0F
+    var middle_forehead = 0F
+    var upper = 0F
+    var middle = 0F
+    var lower = 0F
+    var dif_y = 0F
 
     val totalList : MutableList<MutableList<Pair<Float, Float>>> = ArrayList()
 
@@ -97,26 +103,31 @@ class Features () : Serializable{
             }
             when (i + 1) {
                 FACE -> {
-                    faceWidth = maxX - minX
-                    faceLength = maxY - minY
+                    //faceWidth = maxX - minX
+                    faceWidth = totalList[i][8].first - totalList[i][28].first
+                    faceLength = maxY - top
                 }
                 LEFT_EYE -> {
                     leftEyeLength =
                         Math.abs(totalList[i][0].first - totalList[i][8].first)
                     leftEyeHeight = maxY - minY
+                    dif_y = Math.abs(totalList[i][0].second - totalList[i][8].second)
                 }
                 RIGHT_EYE -> {
                     rightEyeLength =
                         Math.abs(totalList[i][0].first - totalList[i][8].first)
                     rightEyeHeight = maxY - minY
                 }
-                //UPPER_LIP_TOP -> lipLength =
-                    //totalList[UPPER_LIP_TOP - 1][10].first - totalList[UPPER_LIP_TOP - 1][0].first
+                //UPPER_LIP_TOP -> lipLength = totalList[i][10].first - totalList[i][0].first
                 UPPER_LIP_BOTTOM -> {
                     upperLipThickness = totalList[UPPER_LIP_BOTTOM - 1][4].second - totalList[UPPER_LIP_TOP - 1][5].second
+                    lipLength = totalList[i][8].first - totalList[i][0].first
                 }
-                LOWER_LIP_TOP -> lipLength = totalList[i][0].first - totalList[i][8].first
-                LOWER_LIP_BOTTOM -> lowerLipThickness = totalList[LOWER_LIP_BOTTOM - 1][4].second - totalList[LOWER_LIP_TOP - 1][4].second
+                //LOWER_LIP_TOP -> lipLength = totalList[i][0].first - totalList[i][8].first
+                LOWER_LIP_BOTTOM -> {
+                    lowerLipThickness = totalList[LOWER_LIP_BOTTOM - 1][4].second - totalList[LOWER_LIP_TOP - 1][4].second
+                    lipThickness = totalList[LOWER_LIP_BOTTOM - 1][4].second - totalList[UPPER_LIP_TOP - 1][5].second
+                }
                 NOSE_BRIDGE -> {
                     var x1 = totalList[i][0].first
                     var x2 = totalList[i][1].first
@@ -137,6 +148,12 @@ class Features () : Serializable{
                 }
             }
         }
+        middle_forehead = totalList[RIGHT_EYE - 1][0].first - totalList[RIGHT_EYE - 1][8].first
+        //var std = totalList[LEFT_EYEBROW_TOP - 1][4].second + totalList[LEFT_EYEBROW_TOP - 1][4].second
+        upper = totalList[LEFT_EYEBROW_BOTTOM - 1][4].second - top
+        middle = totalList[NOSE_BOTTOM - 1][1].second - totalList[LEFT_EYEBROW_BOTTOM - 1][4].second
+        lower = totalList[FACE - 1][18].second - totalList[NOSE_BOTTOM - 1][1].second
+
         return this
     }
 }

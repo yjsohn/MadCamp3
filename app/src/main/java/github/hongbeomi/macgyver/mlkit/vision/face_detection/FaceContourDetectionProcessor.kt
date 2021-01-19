@@ -47,6 +47,7 @@ class FaceContourDetectionProcessor(private val view: GraphicOverlay) :
         rect: Rect
     ) {
         graphicOverlay.clear()
+        /*
 
         if(results.size > 0) {
             val test = results[results.size - 1]
@@ -56,14 +57,14 @@ class FaceContourDetectionProcessor(private val view: GraphicOverlay) :
             //Log.i("ccccccc", faceGraphic2.getContour()[0].toString())
         }
 
+         */
 
-        /*
         results.forEach {
             val faceGraphic = FaceContourGraphic(graphicOverlay, it, rect)
             graphicOverlay.add(faceGraphic)
-            Log.i("ccccccc", faceGraphic.getContour().toString())
+            //Log.i("ccccccc", faceGraphic.getContour().toString())
         }
-        */
+
 
 
         graphicOverlay.postInvalidate()

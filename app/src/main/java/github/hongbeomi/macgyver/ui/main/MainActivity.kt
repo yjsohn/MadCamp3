@@ -21,7 +21,6 @@ import com.google.android.gms.vision.face.Contour
 import com.google.mlkit.vision.face.FaceContour
 import github.hongbeomi.macgyver.R
 import github.hongbeomi.macgyver.camerax.CameraManager
-import github.hongbeomi.macgyver.camerax.GraphicOverlay
 import github.hongbeomi.macgyver.databinding.ActivityMainBinding
 import github.hongbeomi.macgyver.mlkit.vision.face_detection.FaceContourGraphic
 import github.hongbeomi.macgyver.physiognomy.Features
@@ -134,7 +133,6 @@ class MainActivity : BaseActivity() {
         var faceContourGraphic  = cameraManager.getGraphicOverlay().getGraphic() as FaceContourGraphic
         val contour : MutableList<FaceContour> = faceContourGraphic.getContour()
         Log.i("aaaaaaaa", contour.toString())
-
          */
 
         /*
@@ -144,7 +142,6 @@ class MainActivity : BaseActivity() {
         //정보 정리 후 넘기기
         nextIntent.putExtra("CONTOUR", result_string)
         startActivity(nextIntent)
-
          */
 
 
@@ -175,16 +172,13 @@ class MainActivity : BaseActivity() {
                 val nextIntent = Intent(this, ShowPhysiognomy::class.java)
                 nextIntent.putExtra("src", src)
 
-
-                var graphicOverlay : GraphicOverlay = cameraManager.getGraphicOverlay()
-                var top = graphicOverlay.getBoundingBox()?.top
-                var faceContourGraphic  = graphicOverlay.getGraphic() as FaceContourGraphic
+                var faceContourGraphic  = cameraManager.getGraphicOverlay().getGraphic() as FaceContourGraphic
                 val contour : MutableList<FaceContour> = faceContourGraphic.getContour()
-
-                //Log.i("rrrrrrr", graphicOverlay.getBoundingBox()?.top.toString())
-                Log.i("aaaaaaaa", contour.toString())
-
-                var feature : Features = Features()
+                var top = faceContourGraphic.getBounding()?.top
+                Log.i("aaaaaaaa", contour[5].toString() + "\n" + contour[6].toString())
+                if(top == null)
+                    top = 0
+                var feature : Features = Features(top)
                 for(i : Int in 0..12) {
                     var size = contour[i].points.size - 1
                     var tmp  : ArrayList<Pair<Float, Float>> = ArrayList<Pair<Float, Float>>()
@@ -208,7 +202,6 @@ class MainActivity : BaseActivity() {
                     }
                 }
                 nextIntent.putExtra("FEATURE", feature)
-                nextIntent.putExtra("TOP", top)
                 startActivity(nextIntent)
             }
     }

@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import github.hongbeomi.macgyver.R
-class FragmentThree : Fragment() {
+class FragmentThree : Fragment() {  //눈
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

@@ -108,9 +108,8 @@ class FaceContourGraphic (
         return face.allContours
     }
 
-
-
     companion object {
+        //값 바꿔보기
         private const val FACE_POSITION_RADIUS = 4.0f
         private const val ID_TEXT_SIZE = 30.0f
         private const val BOX_STROKE_WIDTH = 5.0f
