@@ -63,87 +63,20 @@ class FragmentThree : Fragment() {
         tmp2 = feature.middle/(feature.upper+feature.middle+feature.lower)
         //four_txt1.setText(tmp.toString())
 
-
-        four_txt1.setText("hhh")
+        setType()
+        setText()
 
 
         gender.setOnCheckedChangeListener(
             RadioGroup.OnCheckedChangeListener { group, checkedId ->
                 val radio_langange: RadioButton = view.findViewById(checkedId)
-                invisible1.visibility = View.VISIBLE
-                invisible2.visibility = View.VISIBLE
                 if(radio_langange.text == "Female"){
-                    if(tmp > female_avg){//폭넓
-                        if(tmp2>0.33){      //길다
-                            four_txt1.setText(txt1[0])
-                            four_txt2.setText(txt2[0])
-                            four_txt3.setText(txt1[2])
-                            four_txt4.setText(txt2[2])
-                            nose_hor.setImageResource(R.drawable.thick_nose)
-                            nose_ver.setImageResource(R.drawable.long_nose)
-                        }else {                //짧다
-                            four_txt1.setText(txt1[0])
-                            four_txt2.setText(txt2[0])
-                            four_txt3.setText(txt1[3])
-                            four_txt4.setText(txt2[3])
-                            nose_hor.setImageResource(R.drawable.thick_nose)
-                            nose_ver.setImageResource(R.drawable.short_nose)
-                        }
-
-                    }else{//폭좁
-                        if(tmp2>0.33){//길다
-                            four_txt1.setText(txt1[1])
-                            four_txt2.setText(txt2[1])
-                            four_txt3.setText(txt1[2])
-                            four_txt4.setText(txt2[2])
-                            nose_hor.setImageResource(R.drawable.thin_nose)
-                            nose_ver.setImageResource(R.drawable.long_nose)
-                        }else{//짧다
-                            four_txt1.setText(txt1[1])
-                            four_txt2.setText(txt2[1])
-                            four_txt3.setText(txt1[3])
-                            four_txt4.setText(txt2[3])
-                            nose_hor.setImageResource(R.drawable.thin_nose)
-                            nose_ver.setImageResource(R.drawable.short_nose)
-                        }
-                    }
-
+                    sex = FEMALE
                 }else {
-                    if(tmp > male_avg){//남자 폭 넓
-                        if(tmp2<0.33){  //짧다
-                            four_txt1.setText(txt1[0])
-                            four_txt2.setText(txt2[0])
-                            four_txt3.setText(txt1[3])
-                            four_txt4.setText(txt2[3])
-                            nose_hor.setImageResource(R.drawable.thick_nose)
-                            nose_ver.setImageResource(R.drawable.short_nose)
-                        }else { //폭넓고 길다
-                            four_txt1.setText(txt1[0])
-                            four_txt2.setText(txt2[0])
-                            four_txt3.setText(txt1[2])
-                            four_txt4.setText(txt2[2])
-                            nose_hor.setImageResource(R.drawable.thick_nose)
-                            nose_ver.setImageResource(R.drawable.long_nose)
-                        }
-
-                    }else{
-                        if(tmp2>0.33){//폭좁고 길다
-                            four_txt1.setText(txt1[1])
-                            four_txt2.setText(txt2[1])
-                            four_txt3.setText(txt1[2])
-                            four_txt4.setText(txt2[2])
-                            nose_hor.setImageResource(R.drawable.thin_nose)
-                            nose_ver.setImageResource(R.drawable.long_nose)
-                        }else{ //폭졻고 짧다
-                            four_txt1.setText(txt1[1])
-                            four_txt2.setText(txt2[1])
-                            four_txt3.setText(txt1[3])
-                            four_txt4.setText(txt2[3])
-                            nose_hor.setImageResource(R.drawable.thin_nose)
-                            nose_ver.setImageResource(R.drawable.short_nose)
-                        }
-                    }
+                    sex = MALE
                 }
+                setType()
+                setText()
             }
         )
     }
@@ -152,19 +85,23 @@ class FragmentThree : Fragment() {
         if(type1 == WIDE){
             four_txt1.setText(txt1[0])
             four_txt2.setText(txt2[0])
+            nose_hor.setImageResource(R.drawable.thick_nose)
         }
         else{
             four_txt1.setText(txt1[1])
             four_txt2.setText(txt2[1])
+            nose_hor.setImageResource(R.drawable.thin_nose)
         }
 
         if(type2 == LONG){
             four_txt3.setText(txt1[2])
             four_txt4.setText(txt2[2])
+            nose_ver.setImageResource(R.drawable.long_nose)
         }
         else{
             four_txt3.setText(txt1[3])
             four_txt4.setText(txt2[3])
+            nose_ver.setImageResource(R.drawable.short_nose)
         }
     }
 

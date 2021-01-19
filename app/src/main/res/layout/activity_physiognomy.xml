@@ -22,8 +22,8 @@
 
         <ImageView
             android:id="@+id/img"
-            android:layout_width="380dp"
-            android:layout_height="300dp"
+            android:layout_width="360dp"
+            android:layout_height="280dp"
             android:layout_gravity="center"
             android:scaleType="centerCrop" />
     </androidx.cardview.widget.CardView>
