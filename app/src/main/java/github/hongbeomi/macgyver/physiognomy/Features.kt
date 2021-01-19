@@ -53,6 +53,7 @@ class Features (var top : Int) : Serializable{
     var middle = 0F
     var lower = 0F
     var btw = 0F
+    var dif_y = 0F
     val totalList : MutableList<MutableList<Pair<Float, Float>>> = ArrayList()
 
     fun calcFeature() : Features{
@@ -108,6 +109,7 @@ class Features (var top : Int) : Serializable{
                     leftEyeLength =
                         Math.abs(totalList[i][0].first - totalList[i][8].first)
                     leftEyeHeight = maxY - minY
+                    dif_y = Math.abs(totalList[i][0].second - totalList[i][8].second)
                 }
                 RIGHT_EYE -> {
                     rightEyeLength =
