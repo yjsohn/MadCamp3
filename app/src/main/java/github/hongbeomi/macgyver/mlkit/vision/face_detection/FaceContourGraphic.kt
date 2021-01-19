@@ -21,10 +21,10 @@ class FaceContourGraphic (
     private val boxPaint: Paint
 
     init {
-        val selectedColor = Color.WHITE
+        val selectedColor = Color.RED
 
         facePositionPaint = Paint()
-        facePositionPaint.color = selectedColor
+        facePositionPaint.color = Color.WHITE
 
         idPaint = Paint()
         idPaint.color = selectedColor
@@ -81,27 +81,27 @@ class FaceContourGraphic (
         //Log.d("aaaaaaaa",contours.toString())
 
         // face
-        canvas?.drawFace(FaceContour.FACE, Color.BLUE)
+        canvas?.drawFace(FaceContour.FACE, Color.DKGRAY)
 
         // left eye
-        canvas?.drawFace(FaceContour.LEFT_EYEBROW_TOP, Color.RED)
+        canvas?.drawFace(FaceContour.LEFT_EYEBROW_TOP, Color.GREEN)
         canvas?.drawFace(FaceContour.LEFT_EYE, Color.BLACK)
-        canvas?.drawFace(FaceContour.LEFT_EYEBROW_BOTTOM, Color.CYAN)
+        canvas?.drawFace(FaceContour.LEFT_EYEBROW_BOTTOM, Color.GREEN)
 
         // right eye
-        canvas?.drawFace(FaceContour.RIGHT_EYE, Color.DKGRAY)
-        canvas?.drawFace(FaceContour.RIGHT_EYEBROW_BOTTOM, Color.GRAY)
+        canvas?.drawFace(FaceContour.RIGHT_EYE, Color.BLACK)
+        canvas?.drawFace(FaceContour.RIGHT_EYEBROW_BOTTOM, Color.GREEN)
         canvas?.drawFace(FaceContour.RIGHT_EYEBROW_TOP, Color.GREEN)
 
         // nose
-        canvas?.drawFace(FaceContour.NOSE_BOTTOM, Color.LTGRAY)
-        canvas?.drawFace(FaceContour.NOSE_BRIDGE, Color.MAGENTA)
+        canvas?.drawFace(FaceContour.NOSE_BOTTOM, Color.CYAN)
+        canvas?.drawFace(FaceContour.NOSE_BRIDGE, Color.CYAN)
 
-        // rip
-        canvas?.drawFace(FaceContour.LOWER_LIP_BOTTOM, Color.WHITE)
-        canvas?.drawFace(FaceContour.LOWER_LIP_TOP, Color.YELLOW)
-        canvas?.drawFace(FaceContour.UPPER_LIP_BOTTOM, Color.GREEN)
-        canvas?.drawFace(FaceContour.UPPER_LIP_TOP, Color.CYAN)
+        // lip
+        canvas?.drawFace(FaceContour.LOWER_LIP_BOTTOM, Color.MAGENTA)
+        canvas?.drawFace(FaceContour.LOWER_LIP_TOP, Color.MAGENTA)
+        canvas?.drawFace(FaceContour.UPPER_LIP_BOTTOM, Color.MAGENTA)
+        canvas?.drawFace(FaceContour.UPPER_LIP_TOP, Color.MAGENTA)
     }
 
     fun getContour() : MutableList<FaceContour> {

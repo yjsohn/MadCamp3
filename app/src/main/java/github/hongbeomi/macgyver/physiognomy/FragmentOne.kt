@@ -1,23 +1,25 @@
 package github.hongbeomi.macgyver.physiognomy
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import github.hongbeomi.macgyver.R
 import kotlinx.android.synthetic.main.fragment_one.*
-import android.util.Log
+import kotlin.properties.Delegates
 
-class FragmentOne : Fragment() {    //황금비율
+class FragmentOne : Fragment() {
     lateinit var bundle : Bundle
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-
     ): View? {
         // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_one, container, false)
     }
 
@@ -25,22 +27,49 @@ class FragmentOne : Fragment() {    //황금비율
         super.onViewCreated(view, savedInstanceState)
         bundle = this!!.arguments!!
         var feature : Features = bundle.getSerializable("FEATURE") as Features
-        var width_prop = feature.lipLength / feature.faceWidth * 100
-        //var thickness_prop = ((feature.upperLipThickness + feature.lowerLipThickness) / feature.faceWidth) * 100
-        var thickness_prop = (feature.lipThickness / feature.faceWidth) * 100
-        /*
-        frag_one_tv.setText("lip_length: " + feature.lipLength + ", upper_lip_width: " + feature.upperLipThickness + ", lower_lip_width: " + feature.lowerLipThickness +
-                "\nwidth_prop: " + width_prop + ", thick_prop: " + thickness_prop)
+        var tmp = feature.middle_forehead / feature.leftEyeLength
+        var score = 50
 
-         */
-        frag_one_tv.setText("lip_length: " + feature.lipLength + ", upper_lip_width: " + feature.upperLipThickness + ", lower_lip_width: " + feature.lowerLipThickness +
-                "\nwidth_prop: " + width_prop + ", thick_prop: " + thickness_prop +
-            "\nUP: " + feature.upper + ", Mid: " + feature.middle + ", Low: " + feature.lower + "\ntop: " + feature.top +
-        "\nnoseW: " + feature.noseWidth + ", noseL: " + feature.noseLength +
-        "\nlip_thickness: " + feature.lipThickness +
-                "\nfaceW: " + feature.faceWidth + " eyeW: " + feature.rightEyeLength + " eyeH: " + feature.rightEyeHeight +
-        "\nReyeWprop: " + (feature.rightEyeLength / feature.faceWidth) * 100 + ", ReyeHprop: " + (feature.rightEyeHeight / feature.faceWidth) * 100 +
-                "\nLeyeWprop: " + (feature.leftEyeLength / feature.faceWidth) * 100 + ", LeyeHprop: " + (feature.leftEyeHeight / feature.faceWidth) * 100)
-        Log.i("aaaaaaaa", feature.faceWidth.toString())
+        if(tmp<1.28 && tmp >1.12)       {
+            one_txt1.setText("1 : 1.2 : 1")
+            score+=25
+            face1.setImageResource(R.drawable.good)
+        }else{
+            one_txt1.setText("1 : "+ Math.round(tmp*100)/100.0 + " : " +
+                    Math.round((feature.rightEyeLength/feature.leftEyeLength)*100)/100.0)
+            face1.setImageResource(R.drawable.bad)
+        }
+
+        var tmp2 = feature.middle / feature.upper
+        var tmp3 = feature.lower / feature.upper
+        var gold1 = false
+        var gold2 = false
+        if(tmp2>0.9 && tmp2 <1.1){
+            gold1=true
+            if(tmp > 0.9 && tmp3 <1.1)
+                gold2=true
+        }
+        if(gold1==true && gold2 == true) {
+            one_txt2.setText("1 : 1 : 1")
+            face2.setImageResource(R.drawable.good2)
+            score+=25
+//                    "이마 : 코 : 하관 황금비율은 \n 1 : 1 : 1 \n 당신의 이마 : 코 : 하관 비율은 1 : 1 : 1 \n 부럽군요~")
+        }else{
+            one_txt2.setText("1 : "+ Math.round(tmp2*100)/100.0 + " : " + Math.round(tmp3*100)/100.0)
+            face2.setImageResource(R.drawable.bad2)
+//                    "이마 : 코 : 하관 황금비율은 \n 1 : 1 : 1 \n 당신의 이마 : 코 : 하관 비율은 \n 1 : "+
+//                        Math.round(tmp2*100)/100.0+ " : " + Math.round(tmp3*100)/100.0 + " \n 정~말 아깝게 황금비율을 비껴갔습니다!\n" +
+//                        "이만 말을 줄이겠습니다. 행복한 하루 보내세요~")
+        }
+        if(score==50){
+            score_img.setImageResource(R.drawable.fifty)
+        }else if(score==75){
+            score_img.setImageResource(R.drawable.seventyfive)
+        }else{
+            score_img.setImageResource(R.drawable.hundred)
+        }
+
     }
 }
+
+

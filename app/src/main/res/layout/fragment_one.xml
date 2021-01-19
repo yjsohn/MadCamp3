@@ -3,13 +3,94 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".physiognomy.FragmentOne">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/frag_one_tv"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="hi" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            android:textAlignment="center"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/horizon"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_weight="3"
+                android:src="@drawable/hor" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="8"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_layout"
+                android:orientation="horizontal">
+                <TextView android:layout_width="0dp"
+                    android:layout_weight="5"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:layout_gravity="center"
+                    android:textAlignment="center"
+                    android:id="@+id/one_txt1"
+                    android:layout_marginBottom="5dp" />
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_weight="3.5"
+                    android:layout_height="120dp"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/face1"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:textAlignment="center"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_weight="3"
+                android:src="@drawable/ver"
+                android:id="@+id/vertical"/>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="8"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_layout"
+                android:orientation="horizontal">
+                <TextView android:layout_width="0dp"
+                    android:layout_weight="5"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:layout_gravity="center"
+                    android:textAlignment="center"
+                    android:id="@+id/one_txt2"
+                    android:layout_marginBottom="5dp" />
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_weight="3.5"
+                    android:layout_height="120dp"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/face2"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="330dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:id="@+id/score_img"/>
+    </LinearLayout>
 </FrameLayout>

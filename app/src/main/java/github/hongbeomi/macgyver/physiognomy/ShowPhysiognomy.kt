@@ -11,7 +11,6 @@ class ShowPhysiognomy : AppCompatActivity() {
     private val fragmentTwo by lazy { FragmentTwo() }
     private val fragmentThree by lazy { FragmentThree() }
     private val fragmentFour by lazy { FragmentFourth() }
-    private val fragmentFifth by lazy { FragmentFifth() }
     lateinit var feature : Features
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,9 +39,6 @@ class ShowPhysiognomy : AppCompatActivity() {
                     }
                     R.id.fourth -> {
                         changeFragment(fragmentFour)
-                    }
-                    R.id.fifth -> {
-                        changeFragment(fragmentFifth)
                     }
                 }
                 true

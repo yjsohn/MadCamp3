@@ -148,7 +148,7 @@ class Features (var top : Int) : Serializable{
                 }
             }
         }
-        middle_forehead = totalList[RIGHT_EYE - 1][0].first - totalList[RIGHT_EYE - 1][8].first
+        middle_forehead = Math.abs(totalList[RIGHT_EYE - 1][0].first - totalList[RIGHT_EYE - 1][8].first)
         //var std = totalList[LEFT_EYEBROW_TOP - 1][4].second + totalList[LEFT_EYEBROW_TOP - 1][4].second
         upper = totalList[LEFT_EYEBROW_BOTTOM - 1][4].second - top
         middle = totalList[NOSE_BOTTOM - 1][1].second - totalList[LEFT_EYEBROW_BOTTOM - 1][4].second

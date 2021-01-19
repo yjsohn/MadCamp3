@@ -3,11 +3,169 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+
     tools:context=".physiognomy.FragmentThree">
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="350dp"
-        android:text="hi" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <RadioGroup
+            android:id="@+id/gender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/female"
+                android:layout_width="160sp"
+                android:gravity="center"
+                android:layout_height="35dp"
+                android:background="@drawable/radio_flat_selector"
+                android:button="@android:color/transparent"
+                android:paddingLeft="16sp"
+                android:paddingTop="3sp"
+                android:paddingRight="16sp"
+                android:paddingBottom="3sp"
+                android:text="Female"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:fontFamily="@font/samanco"
+                android:textColor="@color/radio_flat_text_selector" />
+
+            <RadioButton
+                android:id="@+id/male"
+                android:gravity="center"
+                android:layout_width="160sp"
+                android:layout_height="35dp"
+                android:background="@drawable/radio_flat_selector"
+                android:button="@android:color/transparent"
+                android:paddingLeft="16sp"
+                android:paddingTop="3sp"
+                android:paddingRight="16sp"
+                android:paddingBottom="3sp"
+                android:text="Male"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:fontFamily="@font/samanco"
+                android:textColor="@color/radio_flat_text_selector" />
+
+        </RadioGroup>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:layout_marginTop="55dp"
+        android:layout_marginRight="10dp"
+        android:orientation="horizontal"
+        android:id="@+id/invisible1"
+        android:visibility="invisible">
+
+        <ImageView
+            android:id="@+id/nose_hor"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_weight="2.5"
+            android:padding="20dp"
+            android:background="@drawable/section"
+            android:elevation="35dp"
+            android:layout_margin="10dp"
+            />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="7"
+            android:layout_height="135dp"
+            android:background="@drawable/border_layout"
+            android:layout_marginStart="-30dp"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/four_txt1"
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_height="15dp"
+                android:layout_weight="7"
+                android:textColor="@color/black"
+                android:layout_marginLeft="25dp"
+                android:textStyle="bold"
+                android:textSize="22dp"
+                android:fontFamily="@font/samanco"/>
+
+            <TextView
+                android:id="@+id/four_txt2"
+                android:layout_width="match_parent"
+                android:layout_height="95dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="25dp"
+                android:textSize="18dp"
+                android:fontFamily="@font/samanco"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:layout_marginTop="210dp"
+        android:layout_marginRight="10dp"
+        android:orientation="horizontal"
+        android:id="@+id/invisible2"
+        android:visibility="invisible">
+
+        <ImageView
+            android:id="@+id/nose_ver"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_weight="2.5"
+            android:padding="20dp"
+            android:background="@drawable/section"
+            android:elevation="35dp"
+            android:layout_margin="10dp"
+            />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="7"
+            android:layout_height="135dp"
+            android:background="@drawable/border_layout"
+            android:layout_marginStart="-30dp"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/four_txt3"
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_height="15dp"
+                android:layout_weight="7"
+                android:textColor="@color/black"
+                android:layout_marginLeft="25dp"
+                android:textStyle="bold"
+                android:textSize="22dp"
+                android:fontFamily="@font/samanco"/>
+
+            <TextView
+                android:id="@+id/four_txt4"
+                android:layout_width="match_parent"
+                android:layout_height="95dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="25dp"
+                android:textSize="18dp"
+                android:fontFamily="@font/samanco"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 </FrameLayout>

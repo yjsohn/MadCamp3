@@ -34,7 +34,7 @@ class FragmentTwo : Fragment() {  //눈썹
         var feature: Features = bundle.getSerializable("FEATURE") as Features
 
         entertainer = arrayOf(arrayOf("강동원", "오마이걸 지호"), arrayOf("수지", "수애"), arrayOf("김유정", "박보영"),
-            arrayOf("소지섭", "유승호"))
+            arrayOf("소지섭", "유승호"), arrayOf(""))
         var texts : ArrayList<TextView> = ArrayList<TextView>()
         texts.add(simEye1); texts.add(simEye2);
 
@@ -69,10 +69,10 @@ class FragmentTwo : Fragment() {  //눈썹
                     "범눈은 눈이 큼직하며 동글고 부리부리한 눈을 말합니다. " +
                     "강직한 성격과 정의감에 불타는 성격의 소유자로서, 사회적으로 남을 돕거나 봉사를 하는 선행을 베푸는 사람들이 많고, " +
                     "부귀와 영화를 누리는 상이라 볼 수 있습니다.")
-            CRANE -> result_eye.setText("당신의 눈은 학눈입니다.\n " +
+            CRANE -> result_eye.setText("당신의 눈은 학눈입니다.\n" +
                     "학눈은 적당한 크기에 눈동자가 흰 눈동자와 검은 눈동자가 분명한 눈을 말합니다. " +
                     "청렴결백하여 이상이 높고 성격이 원만하며, 주변에 신뢰가 두텁고 재복운이 좋은 상이라 볼 수 있습니다.")
-            COW -> result_eye.setText("당신은 소눈을 가졌습니다." +
+            COW -> result_eye.setText("당신은 소눈을 가졌습니다.\n" +
                     "소눈을 가진 사람은 인내심이 강하며 자애로운 성격을 띕니다. " +
                     "또한 매사에 실수가 적고 부지런하여 큰 부자가 많습니다. " +
                     "이러한 눈을 가지면 수명이 길어 일생을 편안히 누립니다.")
@@ -83,9 +83,14 @@ class FragmentTwo : Fragment() {  //눈썹
                     "대부분 정치를 잘 한 성군은 거의 용눈 또는 봉황눈을 지녔다 하였습니다.")
             ETC -> result_eye.setText("이외의 관상은 추가 예정입니다. 개발자에게 응원의 커피 기프티콘을 보내주세요!")
         }
+        if(type != ETC)
+            similarEye.visibility = View.VISIBLE
 
         for(i : Int in entertainer[type - 1].indices) {
+            if(entertainer[type - 1][i].equals(""))
+                break
             texts[i].setText("#" + entertainer[type - 1][i])
+            texts[i].visibility = View.VISIBLE
         }
 
     }
