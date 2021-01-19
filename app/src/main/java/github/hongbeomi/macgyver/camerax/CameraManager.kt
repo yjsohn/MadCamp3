@@ -34,7 +34,7 @@ class CameraManager(
     private var imageAnalyzer: ImageAnalysis? = null
 
     // default barcode scanner
-    private var analyzerVisionType: VisionType = VisionType.Barcode
+    private var analyzerVisionType: VisionType = VisionType.Face
 
     lateinit var cameraExecutor: ExecutorService
     lateinit var imageCapture: ImageCapture

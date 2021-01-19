@@ -14,14 +14,11 @@ class MainViewModel : ViewModel() {
     val onShutterButtonEvent: MutableLiveData<Unit?> = MutableLiveData()
 
     fun onBottomMenuClicked(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.action_barcode_scan -> postVisionType(VisionType.Barcode)
-            R.id.action_face_detect -> postVisionType(VisionType.Face)
-            R.id.action_object_detect -> postVisionType(VisionType.Object)
-            R.id.action_ocr -> postVisionType(VisionType.OCR)
-        }
-        item.isChecked = true
-        return false
+//
+//            R.id.action_face_detect -> postVisionType(VisionType.Face)
+//        }
+
+        return true
     }
 
     fun onClickFabButton(view: View) {
@@ -33,7 +30,7 @@ class MainViewModel : ViewModel() {
     }
 
     private fun postVisionType(type: VisionType) {
-        onItemSelectedEvent.postValue(type)
+        onItemSelectedEvent.postValue(VisionType.Face)
     }
 
 }
