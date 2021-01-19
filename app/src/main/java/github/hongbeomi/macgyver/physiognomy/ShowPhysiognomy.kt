@@ -10,7 +10,6 @@ import kotlinx.android.synthetic.main.activity_physiognomy.*
 
 class ShowPhysiognomy : AppCompatActivity() {
     private val fragmentOne by lazy { FragmentOne() }
-    private val fragmentTwo by lazy { FragmentTwo() }
     private val fragmentThree by lazy { FragmentThree() }
     private val fragmentFour by lazy { FragmentFourth() }
     private val fragmentFifth by lazy { FragmentFifth() }
@@ -52,9 +51,6 @@ class ShowPhysiognomy : AppCompatActivity() {
                 when(it.itemId) {
                     R.id.first -> {
                         changeFragment(fragmentOne)
-                    }
-                    R.id.second -> {
-                        changeFragment(fragmentTwo)
                     }
                     R.id.third -> {
                         changeFragment(fragmentThree)

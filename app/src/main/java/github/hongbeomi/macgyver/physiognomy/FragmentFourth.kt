@@ -14,6 +14,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import github.hongbeomi.macgyver.R
 import kotlinx.android.synthetic.main.fragment_four.*
+import kotlinx.android.synthetic.main.fragment_one.*
 
 
 class FragmentFourth : Fragment() {
@@ -38,53 +39,86 @@ class FragmentFourth : Fragment() {
         var male_avg = 0.815
         var female_avg = 0.851
 
-        var txt1 = arrayOf("당신은 폭이 넓고 짧은 코를가지고 있습니다.","당신은 폭이 넓고 긴 코를 가지고 있습니다.", "당신은 폭이 좁고 긴 코를 가지고 있습니다.", "당신은 폭이 좁고 짧은 코를 가지고 있습니다.")
+        var txt1 = arrayOf("폭이 넓은 코 입니다.", "폭이 좁은 코 입니다.", "길이가 긴 코 입니다.", "길이가 짧은 코 입니다." )
 
-        var txt2 = arrayOf("폭이 넓은 코 관상은 돈 씀씀이가 많기 때문에 생활력이 왕성하다고 합니다. 이는 생활력이 있기 때문에 돈하고 인연이 많다는 뜻이랍니다. 강하고 억센 생활력과 돈의 힘으로 인기가 많아 바람둥이가 될 수도 있습니다. 또한 짧은 코 관상은 성격이 싹싹하고 융통성이 있으면 인정이 많고 결단력도 빠른 편이며, 관상학적으로 다른 부분까지 재능이 있게 생겼으면 위와 같은 성격이 더욱 두드러져 지위도 높아질 수 있습니다. 하지만 치밀하고 심각하게 생각하는 면이 부족해 성질이 급한편이 많습니다.",
-            "폭이 넓은 코 관상은 돈 씀씀이가 많기 때문에 생활력이 왕성하다고 합니다. 이는 생활력이 있기 때문에 처세가 좋아 스스로 운을 개척해 만년운이 좋습니다. 강하고 억센 생활력과 돈의 힘으로 인기가 많아 바람둥이가 될 수도 있습니다. 또한 긴 코 관상은 자존심이 강하고 품위를 지키려고 하기 때문에 깔끔한 편이며 자기가 할 일을 찾아 착실하게 향상해 가는 스타일로 장수와 부귀가 동시에 누리는 관상입니다.",
-            "정면에서 보면 폭이 좁고, 콧구명이 보이지 않으며, 곳곳하게 서 있어 모양과 모습은 미인형 코라고 합니다. 폭이 좁은 코를 가진 사람은 예술가로서의 재능이 있습니다. 또한 긴 코 관상은 자존심이 강하고 품위를 지키려고 하기 때문에 깔끔한 편이며 자기가 할 일을 찾아 착실하게 향상해 가는 스타일로 장수와 부귀가 동시에 누리는 관상입니다.",
-            "정면에서 보면 폭이 좁고, 콧구명이 보이지 않으며, 곳곳하게 서 있어 모양과 모습은 미인형 코라고 합니다. 폭이 좁은 코를 가진 사람은 예술가로서의 재능이 있습니다. 또한 짧은 코 관상은 성격이 싹싹하고 융통성이 있으면 인정이 많고 결단력도 빠른 편이며, 관상학적으로 다른 부분까지 재능이 있게 생겼으면 위와 같은 성격이 더욱 두드러져 지위도 높아질 수 있습니다. 하지만 치밀하고 심각하게 생각하는 면이 부족해 성질이 급한편이 많습니다.")
+        var txt2 = arrayOf("폭이 넓은 코 관상은 돈 씀씀이가 많기 때문에 생활력이 왕성하다고 합니다. 이는 생활력이 있기 때문에 돈하고 인연이 많다는 뜻입니다. 강한 생활력과 좋은 처세 덕분에 스스로 운을 개척해 만년운이 좋습니다.",
+        "정면에서 보면 폭이 좁고, 콧구명이 보이지 않으며, 곳곳하게 서 있어 모양과 모습은 미인형 코라고 합니다. 폭이 좁은 코를 가진 사람은 예술가로서의 재능이 있습니다.",
+        "긴 코 관상은 자존심이 강하고 품위를 지키려고 하기 때문에 깔끔한 편이며 자기가 할 일을 찾아 착실하게 향상해 가는 스타일로 장수와 부귀가 동시에 누리는 관상입니다.",
+        "짧은 코 관상은 성격이 싹싹하고 융통성이 있으면 인정이 많고 결단력도 빠른 편입니다. 하지만 치밀하고 심각하게 생각하는 면이 부족해 성질이 급한편이 많습니다."
+        )
 
         gender.setOnCheckedChangeListener(
             RadioGroup.OnCheckedChangeListener { group, checkedId ->
                 val radio_langange: RadioButton = view.findViewById(checkedId)
                 if(radio_langange.text == "Female"){
-                        if(tmp > female_avg){
-                            if(tmp2<0.33){
+                        if(tmp > female_avg){//폭넓
+                            if(tmp2>0.33){      //길다
                                 four_txt1.setText(txt1[0])
-                                four_txt2.setText(txt2[0]+" 여성이라면 접객업을 하게 되면 크게 성공할 운이라고 합니다.")
-                            }else {
-                                four_txt1.setText(txt1[1])
-                                four_txt2.setText(txt2[1])
+                                four_txt2.setText(txt2[0])
+                                four_txt3.setText(txt1[2])
+                                four_txt4.setText(txt2[2])
+                                nose_hor.setImageResource(R.drawable.thick_nose)
+                                nose_ver.setImageResource(R.drawable.long_nose)
+                            }else {                //짧다
+                                four_txt1.setText(txt1[0])
+                                four_txt2.setText(txt2[0])
+                                four_txt3.setText(txt1[3])
+                                four_txt4.setText(txt2[3])
+                                nose_hor.setImageResource(R.drawable.thick_nose)
+                                nose_ver.setImageResource(R.drawable.short_nose)
                             }
 
-                        }else{
-                            if(tmp2>0.33){
-                                four_txt1.setText(txt1[2])
-                                four_txt2.setText(txt2[2])
-                            }else{
-                                four_txt1.setText(txt1[3])
-                                four_txt2.setText(txt2[3] + " 여성이라면 접객업을 하게 되면 크게 성공할 운이라고 합니다.")
+                        }else{//폭좁
+                            if(tmp2>0.33){//길다
+                                four_txt1.setText(txt1[1])
+                                four_txt2.setText(txt2[1])
+                                four_txt3.setText(txt1[2])
+                                four_txt4.setText(txt2[2])
+                                nose_hor.setImageResource(R.drawable.thin_nose)
+                                nose_ver.setImageResource(R.drawable.long_nose)
+                            }else{//짧다
+                                four_txt1.setText(txt1[1])
+                                four_txt2.setText(txt2[1])
+                                four_txt3.setText(txt1[3])
+                                four_txt4.setText(txt2[3])
+                                nose_hor.setImageResource(R.drawable.thin_nose)
+                                nose_ver.setImageResource(R.drawable.short_nose)
                             }
                         }
 
                 }else {
-                    if(tmp > male_avg){
-                        if(tmp2<0.33){
+                    if(tmp > male_avg){//남자 폭 넓
+                        if(tmp2<0.33){  //짧다
                             four_txt1.setText(txt1[0])
                             four_txt2.setText(txt2[0])
-                        }else {
-                            four_txt1.setText(txt1[1])
-                            four_txt2.setText(txt2[1])
+                            four_txt3.setText(txt1[3])
+                            four_txt4.setText(txt2[3])
+                            nose_hor.setImageResource(R.drawable.thick_nose)
+                            nose_ver.setImageResource(R.drawable.short_nose)
+                        }else { //폭넓고 길다
+                            four_txt1.setText(txt1[0])
+                            four_txt2.setText(txt2[0])
+                            four_txt3.setText(txt1[2])
+                            four_txt4.setText(txt2[2])
+                            nose_hor.setImageResource(R.drawable.thick_nose)
+                            nose_ver.setImageResource(R.drawable.long_nose)
                         }
 
                     }else{
-                        if(tmp2>0.33){
-                            four_txt1.setText(txt1[2])
-                            four_txt2.setText(txt2[2])
-                        }else{
-                            four_txt1.setText(txt1[3])
-                            four_txt2.setText(txt2[3])
+                        if(tmp2>0.33){//폭좁고 길다
+                            four_txt1.setText(txt1[1])
+                            four_txt2.setText(txt2[1])
+                            four_txt3.setText(txt1[2])
+                            four_txt4.setText(txt2[2])
+                            nose_hor.setImageResource(R.drawable.thin_nose)
+                            nose_ver.setImageResource(R.drawable.long_nose)
+                        }else{ //폭졻고 짧다
+                            four_txt1.setText(txt1[1])
+                            four_txt2.setText(txt2[1])
+                            four_txt3.setText(txt1[3])
+                            four_txt4.setText(txt2[3])
+                            nose_hor.setImageResource(R.drawable.thin_nose)
+                            nose_ver.setImageResource(R.drawable.short_nose)
                         }
                     }
                 }
